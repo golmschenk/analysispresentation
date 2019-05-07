@@ -9,7 +9,7 @@ from scipy.stats import norm
 import seaborn as sns
 import matplotlib2tikz
 
-from utility import MixtureModel
+from mixture_model import MixtureModel
 
 plt.switch_backend('Agg')
 sns.set()
