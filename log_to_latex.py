@@ -161,7 +161,7 @@ class Log:
         :rtype: pd.DataFrame
         """
 
-        summary_iterator = tf.train.summary_iterator(self.event_file_name)
+        summary_iterator = tf.compat.v1.train.summary_iterator(self.event_file_name)
         self.scalars_data_frame = pd.DataFrame()
         for event in summary_iterator:
             event_step = int(event.step)
