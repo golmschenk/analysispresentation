@@ -9,7 +9,14 @@ import tensorflow as tf
 class Log:
     """A class for reading TensorBoard logs."""
     def __init__(self, event_file_path: str):
-        self.event_file_path: str = event_file_path
+        self.event_file_path: str
+        if os.path.isdir(event_file_path):
+            glob_string = os.path.join(event_file_path, '**', 'events.out.tfevents*')
+            event_paths = glob.glob(glob_string, recursive=True)
+            assert len(event_paths) == 1  # Only allow the directory path when it contains a single event file.
+            self.event_file_path = event_paths[0]
+        else:
+            self.event_file_path = event_file_path
         self.scalars_data_frame: pd.DataFrame = self.data_frame_from_event_file_scalar_summaries(self.event_file_path)
 
     @classmethod
