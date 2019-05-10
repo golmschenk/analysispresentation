@@ -17,7 +17,7 @@ class TestLog:
     def test_can_find_only_event_file_in_directory(self):
         log = Log('test_resources/example_logs/example_log/DNN')
         assert log is not None
-        with pytest.raises(AssertionError):
+        with pytest.raises(AssertionError):  # Only allow a single event file to be contained.
             Log('test_resources/example_logs/example_log')
 
     def test_can_retrieve_scalar_data_frame(self):

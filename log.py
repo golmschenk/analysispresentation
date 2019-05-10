@@ -33,6 +33,7 @@ class Log:
         scalars_data_frame = pd.DataFrame()
         for event in summary_iterator:
             event_step = int(event.step)
+            scalars_data_frame.at[event_step, 'Step'] = event_step
             for value in event.summary.value:
                 scalars_data_frame.at[event_step, value.tag] = value.simple_value
         scalars_data_frame.sort_index(inplace=True)
